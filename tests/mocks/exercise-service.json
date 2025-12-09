@@ -1,0 +1,510 @@
+{
+  "uuid": "ac85727a-de40-4b68-bdf0-40ea469faaa1",
+  "lastMigration": 33,
+  "name": "ExerciseService",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "df51ada2-115e-4a97-9d1a-1d7ddcb0da17",
+      "type": "http",
+      "documentation": "Deletes the exercise event with the given exerciseEventId.",
+      "method": "delete",
+      "endpoint": "exercise/v1/exercise-event/:exerciseEventId",
+      "responses": [
+        {
+          "uuid": "e5421e8d-081e-4faa-9331-77950bb86fa5",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "The exercise event was successfully deleted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "802a7790-feff-41e2-a966-e435ec69da98",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Unauthorized",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "95378c52-537f-4282-b9db-7abe42097293",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "67a5d279-48a3-4471-a1a5-fb9f21b5596e",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "058cedde-a8fa-4d4b-88ad-d6107e8bf4c7",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal server error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "DISABLE_RULES",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f0df2aaf-0a05-4f5a-9f1e-1f7fe8827ef3",
+      "type": "http",
+      "documentation": "Searches for an existing exercise-event with given exerciseEventId.",
+      "method": "get",
+      "endpoint": "exercise/v1/exercise-event/:exerciseEventId",
+      "responses": [
+        {
+          "uuid": "f9e8cc74-bca9-41fe-8c86-c8780ada5a19",
+          "body": "{\n  \"analysisResults\": [],\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"exerciseId\": \"34\",\n  \"metaData\": {\n    \"startFrame\": 93\n  },\n  \"status\": \"new\",\n  \"timestamp\": \"2025-11-17T15:55:37.33Z\",\n  \"userHeight\": 177,\n  \"userId\": \"8374d8b2-7041-70bf-e0a2-7cb9b9d8576c\",\n  \"videoLink\": \"https://cuju.pro/some-video.mov\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Exercise Event was found. Status: new",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "56d7c1e1-9ec2-40d7-ac68-36730c0d5136",
+          "body": "{\n  \"analysisResults\": [],\n  \"estimatedAnalysisCompletedAt\": \"2025-11-17T15:56:52.013Z\",\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"exerciseId\": \"34\",\n  \"metaData\": {\n    \"startFrame\": 93\n  },\n  \"status\": \"uploaded\",\n  \"timestamp\": \"2025-11-17T15:55:37.33Z\",\n  \"userHeight\": 177,\n  \"userId\": \"8374d8b2-7041-70bf-e0a2-7cb9b9d8576c\",\n  \"videoLink\": \"https://cuju.pro/some-video.mov\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Exercise Event was found. Status: uploaded #1",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "bc8f484f-edbc-47ae-a0f2-3bd607a618c4",
+          "body": "{\n  \"analysisResults\": [],\n  \"estimatedAnalysisCompletedAt\": \"2025-11-17T15:56:52.013Z\",\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"exerciseId\": \"34\",\n  \"metaData\": {\n    \"startFrame\": 93\n  },\n  \"status\": \"uploaded\",\n  \"timestamp\": \"2025-11-17T15:55:37.33Z\",\n  \"userHeight\": 177,\n  \"userId\": \"8374d8b2-7041-70bf-e0a2-7cb9b9d8576c\",\n  \"videoLink\": \"https://cuju.pro/some-video.mov\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Exercise Event was found. Status: uploaded #2",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2d8772c3-d1e8-4feb-90d9-302353f9ba62",
+          "body": "{\n  \"analysisResults\": [],\n  \"estimatedAnalysisCompletedAt\": \"2025-11-17T15:56:52.013Z\",\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"exerciseId\": \"34\",\n  \"metaData\": {\n    \"startFrame\": 93\n  },\n  \"status\": \"uploaded\",\n  \"timestamp\": \"2025-11-17T15:55:37.33Z\",\n  \"userHeight\": 177,\n  \"userId\": \"8374d8b2-7041-70bf-e0a2-7cb9b9d8576c\",\n  \"videoLink\": \"https://cuju.pro/some-video.mov\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Exercise Event was found. Status: uploaded #3",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0f43f287-e889-4921-8d86-5475015d84c8",
+          "body": "{\n  \"analysisResults\": [\n    {\n      \"measurementData\": {\n        \"distance\": {\n          \"unit\": \"m\",\n          \"value\": 1.78\n        }\n      },\n      \"measurementIdentifier\": \"distance\",\n      \"statusCode\": 200,\n      \"timestamp\": \"2025-11-17T15:57:20.041Z\"\n    }\n  ],\n  \"estimatedAnalysisCompletedAt\": \"2025-11-17T15:56:52.013Z\",\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"exerciseId\": \"34\",\n  \"metaData\": {\n    \"startFrame\": 93\n  },\n  \"score\": 50,\n  \"status\": \"scored\",\n  \"timestamp\": \"2025-11-17T15:55:37.33Z\",\n  \"userHeight\": 177,\n  \"userId\": \"8374d8b2-7041-70bf-e0a2-7cb9b9d8576c\",\n  \"videoLink\": \"https://cuju.pro/some-video.mov\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Exercise Event was found. Status: scored",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "SEQUENTIAL",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e5735a0e-1d29-44e2-82ab-76438d7c12ae",
+      "type": "http",
+      "documentation": "Create an exercise event.",
+      "method": "post",
+      "endpoint": "exercise/v1/user/:userId/exercise-event",
+      "responses": [
+        {
+          "uuid": "d7ec6d01-5bd2-4b94-a242-8d2f35b9ce08",
+          "body": "{\n  \"exerciseEventId\": \"edc5ebca-9151-4488-947f-1f4e8eb22584\",\n  \"uploadUrl\": \"exercise/v1/video-upload/edc5ebca-9151-4488-947f-1f4e8eb22584\"\n}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "New exercise event has been created",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "dd851314-cbb6-4f8d-a7fd-53c538ad6580",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Bad request",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2f38dd6a-3c51-4ec2-8878-6528052d46db",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Unauthorized",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3f420f6c-a52a-4597-b97e-da8b6018b6e9",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "Forbidden",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4ee1a0e4-2c4f-4d7f-94e5-b608505b39b3",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b859f6da-163d-4140-83c3-943571162ae6",
+          "body": "{\n  \"message\": \"error description\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Internal server error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "DISABLE_RULES",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "463fa243-e18b-4028-be8e-0a62e557e3e7",
+      "type": "http",
+      "documentation": "Receives a video",
+      "method": "put",
+      "endpoint": "exercise/v1/video-upload/:exerciseEventId",
+      "responses": [
+        {
+          "uuid": "39e3bb6d-c343-4106-9fe0-5fb6d7949d29",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Video was uploaded successfully",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "DISABLE_RULES",
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "df51ada2-115e-4a97-9d1a-1d7ddcb0da17"
+    },
+    {
+      "type": "route",
+      "uuid": "f0df2aaf-0a05-4f5a-9f1e-1f7fe8827ef3"
+    },
+    {
+      "type": "route",
+      "uuid": "e5735a0e-1d29-44e2-82ab-76438d7c12ae"
+    },
+    {
+      "type": "route",
+      "uuid": "463fa243-e18b-4028-be8e-0a62e557e3e7"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

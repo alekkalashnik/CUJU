@@ -1,0 +1,78 @@
+name: Playwright Tests
+permissions:
+  contents: write
+  pages: write
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test_and_deploy:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Start Mockoon Server
+        run: |
+          echo "Starting Mockoon CLI..."
+          npx mockoon-cli start --data=./tests/mocks/exercise-service.json --port=3000 --log-transaction & sleep 3
+          # quick check that the process is running (for immediate debugging)
+          if ! pgrep -f mockoon-cli > /dev/null; then
+            echo "mockoon-cli process not found after start"
+            ps aux
+            exit 1
+          fi
+      - name: Wait for Mockoon health
+        run: |
+          for i in {1..10}; do
+            if curl -s http://127.0.0.1:3000 > /dev/null; then
+              echo "Mockoon is up!"
+                exit 0
+            fi
+            echo "Waiting for Mockoon..."
+            sleep 1
+          done
+          echo "Mockoon did not start."
+          exit 1
+
+      - name: Run Playwright tests
+        run: npx playwright test --workers=1
+
+      - name: Move Playwright report to run-specific folder
+        run: |
+          mkdir -p playwright-report-${{ github.run_id }}
+          cp -r playwright-report/* playwright-report-${{ github.run_id }}/
+          
+      - name: Upload Playwright HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report-${{ github.run_id }}/
+          retention-days: 14
+
+      - name: Deploy Report to GitHub Pages
+        if: always()
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: playwright-report-${{ github.run_id }}/
+          branch: gh-pages
+          token: ${{ github.token }}
+          clean: true
+
