@@ -40,14 +40,23 @@ Run in UI mode (for debugging):
 npx playwright test --ui --workers=1
 
 
+## CI/CD & Reports
+
+Tests are automatically run on every push to `main` via GitHub Actions.
+The latest test report is deployed to GitHub Pages and can be viewed here:
+[https://alekkalashnik.github.io/CUJU/](https://alekkalashnik.github.io/CUJU/)
+
+
 ## Project Structure
 
+- `.github/workflows/`: CI/CD configuration.
 - `tests/`: Contains the test specifications.
+    - `mocks/`: Contains Mockoon configuration (`exercise-service.json`).
 - `lib/`: Contains helper classes and types.
     - `services/`: Service objects for API interactions.
     - `types.ts`: TypeScript interfaces for API contracts.
+- `playwright.config.ts`: Playwright configuration.
 - `test-strategy.md`: Design document covering negative scenarios and test strategy.
-- `exercise-service.json`: Mockoon configuration.
 
 
 ## Troubleshooting
