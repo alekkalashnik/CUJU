@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ExerciseService } from '../lib/services/ExerciseService';
 import * as path from 'path';
+import { ExerciseEventResponse } from '../lib/types';
 
 test.describe('Exercise Analysis Flow', () => {
   let exerciseService: ExerciseService;
@@ -32,7 +33,7 @@ test.describe('Exercise Analysis Flow', () => {
 
     // 3. Poll for Status "scored"
     // Using expect.poll to retry until the condition is met
-    let finalEvent: any;
+    let finalEvent: ExerciseEventResponse | undefined;
     await expect.poll(async () => {
       const event = await exerciseService.getExerciseEvent(exerciseEventId);
       console.log(`Current status: ${event.status}`);
@@ -47,8 +48,8 @@ test.describe('Exercise Analysis Flow', () => {
 
     // 4. Validate Final Result
     // We use the captured event because the mock loops responses and fetching again might return 'new'
-    expect(finalEvent.score).toBeDefined();
-    expect(finalEvent.analysisResults).toBeDefined();
-    expect(finalEvent.analysisResults?.length).toBeGreaterThan(0);
+    expect(finalEvent!.score).toBeDefined();
+    expect(finalEvent!.analysisResults).toBeDefined();
+    expect(finalEvent!.analysisResults?.length).toBeGreaterThan(0);
   });
 });

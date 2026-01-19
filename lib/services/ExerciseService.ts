@@ -39,7 +39,7 @@ export class ExerciseService {
    */
   async getExerciseEvent(exerciseEventId: string): Promise<ExerciseEventResponse> {
     const response = await this.request.get(`/exercise/v1/exercise-event/${exerciseEventId}`);
-    await this.validateResponse(response, 200);
+    await this.validateResponse(response, 20);
     return response.json();
   }
 
@@ -48,7 +48,7 @@ export class ExerciseService {
    */
   private async validateResponse(response: APIResponse, expectedStatus: number) {
     if (response.status() !== expectedStatus) {
-      throw new Error(`API Request failed. Status: ${response.status()} ${response.statusText()}. Body: ${await response.text()}`);
+      throw new Error(`API Request failed. Status: ${response.status()} ${response.statusText()}. Body: ${await response.text()}. Expected status: ${expectedStatus}.`);
     }
   }
 }

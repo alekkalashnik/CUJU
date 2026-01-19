@@ -71,9 +71,10 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: {
+    command: 'npx mockoon-cli start --data tests/mocks/exercise-service.json --port 3000',
+    url: 'http://127.0.0.1:3000/exercise/v1/exercise-event/health-check', // Or just the root if no health check exists, but waiting for port is safer
+    reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000, // Give it time to start
+  },
 });

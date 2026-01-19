@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test tests/exercise-analysis.spec.ts --workers=1",
+    "mockoon": "npx mockoon-cli start --data=./tests/mocks/exercise-service.json --port=3000 --log-transaction & sleep 3"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
