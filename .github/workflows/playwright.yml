@@ -28,28 +28,28 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Start Mockoon Server
-        run: |
-          echo "Starting Mockoon CLI..."
-          npx mockoon-cli start --data=./tests/mocks/exercise-service.json --port=3000 --log-transaction & sleep 3
-          # quick check that the process is running (for immediate debugging)
-          if ! pgrep -f mockoon-cli > /dev/null; then
-            echo "mockoon-cli process not found after start"
-            ps aux
-            exit 1
-          fi
-      - name: Wait for Mockoon health
-        run: |
-          for i in {1..10}; do
-            if curl -s http://127.0.0.1:3000 > /dev/null; then
-              echo "Mockoon is up!"
-                exit 0
-            fi
-            echo "Waiting for Mockoon..."
-            sleep 1
-          done
-          echo "Mockoon did not start."
-          exit 1
+      # - name: Start Mockoon Server
+      #   run: |
+      #     echo "Starting Mockoon CLI..."
+      #     npx mockoon-cli start --data=./tests/mocks/exercise-service.json --port=3000 --log-transaction & sleep 3
+      #     # quick check that the process is running (for immediate debugging)
+      #     if ! pgrep -f mockoon-cli > /dev/null; then
+      #       echo "mockoon-cli process not found after start"
+      #       ps aux
+      #       exit 1
+      #     fi
+      # - name: Wait for Mockoon health
+      #   run: |
+      #     for i in {1..10}; do
+      #       if curl -s http://127.0.0.1:3000 > /dev/null; then
+      #         echo "Mockoon is up!"
+      #           exit 0
+      #       fi
+      #       echo "Waiting for Mockoon..."
+      #       sleep 1
+      #     done
+      #     echo "Mockoon did not start."
+      #     exit 1
 
       - name: Run Playwright tests
         run: npx playwright test --workers=1
