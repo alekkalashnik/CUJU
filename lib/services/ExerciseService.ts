@@ -39,7 +39,7 @@ export class ExerciseService {
    */
   async getExerciseEvent(exerciseEventId: string): Promise<ExerciseEventResponse> {
     const response = await this.request.get(`/exercise/v1/exercise-event/${exerciseEventId}`);
-    await this.validateResponse(response, 20);
+    await this.validateResponse(response, 200);
     return response.json();
   }
 
